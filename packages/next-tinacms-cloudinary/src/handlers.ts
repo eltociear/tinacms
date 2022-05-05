@@ -62,31 +62,38 @@ export const createMediaHandler = (
 }
 
 async function uploadMedia(req: NextApiRequest, res: NextApiResponse) {
-  const upload = promisify(
-    multer({
-      storage: multer.diskStorage({
-        directory: (req, file, cb) => {
-          cb(null, '/tmp')
-        },
-        filename: (req, file, cb) => {
-          cb(null, file.originalname)
-        },
-      }),
-    }).single('file')
-  )
+  try {
+    const upload = promisify(
+      multer({
+        storage: multer.diskStorage({
+          directory: (req, file, cb) => {
+            cb(null, '/tmp')
+          },
+          filename: (req, file, cb) => {
+            cb(null, file.originalname)
+          },
+        }),
+      }).single('file')
+    )
 
-  await upload(req, res)
+    await upload(req, res)
 
-  const { directory } = req.body
+    const { directory } = req.body
 
-  //@ts-ignore
-  const result = await cloudinary.uploader.upload(req.file.path, {
-    folder: directory.replace(/^\//, ''),
-    use_filename: true,
-    overwrite: false,
-  })
+    console.log('uploading to cloudinary')
+    //@ts-ignore
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: directory.replace(/^\//, ''),
+      use_filename: true,
+      overwrite: false,
+    })
+    console.log('upload to cloudinary complete')
 
-  res.json(result)
+    res.json(result)
+  } catch (err) {
+    console.log(err)
+    res.json({ error: String(err) })
+  }
 }
 
 async function listMedia(
