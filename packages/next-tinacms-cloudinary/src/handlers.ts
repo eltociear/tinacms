@@ -62,6 +62,7 @@ export const createMediaHandler = (
 }
 
 async function uploadMedia(req: NextApiRequest, res: NextApiResponse) {
+  console.log('starting uploadMedia')
   try {
     const upload = promisify(
       multer({
@@ -76,7 +77,9 @@ async function uploadMedia(req: NextApiRequest, res: NextApiResponse) {
       }).single('file')
     )
 
+    console.log('starting upload')
     await upload(req, res)
+    console.log('upload complete')
 
     const { directory } = req.body
 
