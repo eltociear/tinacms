@@ -1,5 +1,21 @@
 # tinacms-cli
 
+## 0.60.24
+
+### Patch Changes
+
+- 2ef5a1f33: Use media config from the schema in the local media server
+- 2ef5a1f33: Uses new `schema.config` when resolving media/asset urls
+- b46e9a481: Fixed issue where child process would start before parent
+- 7b77fe1b5: Add a default TinaMediaStore for repo-based media
+- 3e4b3ea7e: media manage uses relieve dir paths
+- Updated dependencies [2ef5a1f33]
+- Updated dependencies [2ef5a1f33]
+  - @tinacms/graphql@0.60.9
+  - @tinacms/datalayer@0.1.1
+  - @tinacms/metrics@0.0.3
+  - @tinacms/schema-tools@0.0.5
+
 ## 0.60.23
 
 ### Patch Changes

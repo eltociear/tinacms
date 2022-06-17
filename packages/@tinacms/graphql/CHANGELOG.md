@@ -1,5 +1,14 @@
 # tina-graphql
 
+## 0.60.9
+
+### Patch Changes
+
+- 2ef5a1f33: Use media config from the schema in the local media server
+- 2ef5a1f33: Uses new `schema.config` when resolving media/asset urls
+  - @tinacms/datalayer@0.1.1
+  - @tinacms/schema-tools@0.0.5
+
 ## 0.60.8
 
 ### Patch Changes
